@@ -1,56 +1,22 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تبلیغ | ۹ بخش مرموز</title>
-  <link rel="stylesheet" href="style.css">
-  <script>
-    !function(e,t,n){
-      e.yektanetAnalyticsObject=n,
-      e[n]=e[n]||function(){e[n].q.push(arguments)},
-      e[n].q=e[n].q||[];
-      var a=t.getElementsByTagName("head")[0],
-          r=new Date,
-          c="https://cdn.yektanet.com/superscript-v2/KgM2YeyD/native-48873/yn_pub.js?v="
-            +r.getFullYear().toString()+"0"+r.getMonth()+"0"+r.getDate()+"0"+r.getHours(),
-          s=t.createElement("link");
-      s.rel="preload",
-      s.as="script",
-      s.href=c,
-      a.appendChild(s);
-      var l=t.createElement("script");
-      l.async=!0,
-      l.src=c,
-      a.appendChild(l);
-    }(window,document,"yektanet");
-  </script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0b0c10">
+<title>مرحلهٔ دوم | ۹ بخش مرموز</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
+<script>
+!function(e,t,n){e.yektanetAnalyticsObject=n,e[n]=e[n]||function(){e[n].q.push(arguments)},e[n].q=e[n].q||[];var a=t.getElementsByTagName("head")[0],r=new Date,c="https://cdn.yektanet.com/superscript-v2/KgM2YeyD/native-48873/yn_pub.js?v="+r.getFullYear().toString()+"0"+r.getMonth()+"0"+r.getDate()+"0"+r.getHours(),s=t.createElement("link");s.rel="preload",s.as="script",s.href=c,a.appendChild(s);var l=t.createElement("script");l.async=!0,l.src=c,a.appendChild(l)}(window,document,"yektanet");
+</script>
 </head>
-<body>
-  <main class="container">
-    <section class="page">
-      <h1>بخش <span id="sectionNumber">۱</span></h1>
-      <div class="ad-box">
-        <p>اگر جایگاه تمام‌صفحه یکتانت فعال باشد و تبلیغی برای نمایش موجود باشد، ممکن است تبلیغ به‌صورت خودکار نمایش داده شود.</p>
-        <p id="adStatus" role="status" aria-live="polite">در حال بارگذاری اسکریپت تبلیغات…</p>
-        <button id="continueButton" type="button">ادامه</button>
-      </div>
-      <a href="index.html" class="home-link">بازگشت به صفحهٔ اصلی</a>
-    </section>
-  </main>
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const section = Number(params.get("section"));
-    const safeSection = Number.isInteger(section) && section >= 1 && section <= 9 ? section : 1;
-    document.getElementById("sectionNumber").textContent = new Intl.NumberFormat("fa-IR").format(safeSection);
-    document.getElementById("continueButton").addEventListener("click", () => {
-      window.location.href = `index.html?selected=${safeSection}`;
-    });
-    // متن بالا صرفاً وضعیت بارگذاری را توضیح می‌دهد و ادعا نمی‌کند تبلیغ حتماً نمایش داده شده است.
-    window.setTimeout(() => {
-      document.getElementById("adStatus").textContent =
-        "اگر تبلیغی نمی‌بینی، وضعیت فعال بودن جایگاه، اتصال اسکریپت و تنظیمات مرورگر را بررسی کن.";
-    }, 5000);
-  </script>
-</body>
-</html>
+<body><div class="ambient ambient-one" aria-hidden="true"></div><div class="ambient ambient-two" aria-hidden="true"></div>
+<main class="shell shell-narrow">
+<header class="topbar"><a class="brand" href="index.html"><span class="brand-mark">۹</span><span><strong>پروندهٔ نُه</strong><small>THE NINE FILES</small></span></a><span class="top-status"><span class="status-dot"></span> مرحلهٔ دوم</span></header>
+<section class="step-hero"><div class="eyebrow"><span class="eyebrow-line"></span> مرحلهٔ ۰۲ <span class="eyebrow-line"></span></div><div class="seal" aria-hidden="true"><span>۹</span></div><p class="section-kicker">بخش انتخاب‌شده: <strong id="sectionNumber">۰۱</strong></p><h1>یک قدم تا <span class="gold-text">پایان پرونده</span></h1><p class="hero-copy">اگر جایگاه تبلیغاتی یکتانت فعال باشد، تبلیغ تمام‌صفحه ممکن است هنگام بارگذاری این صفحه نمایش داده شود.</p></section>
+<section class="message-card"><div class="message-icon" aria-hidden="true">✦</div><h2>پس از پایان تبلیغ ادامه بده</h2><p>وقتی تبلیغ تمام شد یا بسته شد، دکمهٔ زیر را بزن تا اطلاعات مرحلهٔ پایانی را ببینی.</p><div class="notice"><span aria-hidden="true">ⓘ</span><span>اگر تبلیغ ظاهر نشد، ممکن است جایگاه در دسترس نباشد یا بارگذاری آن با مشکل روبه‌رو شده باشد.</span></div><a class="primary-button" id="continueButton" href="result.html">تبلیغ تمام شد — ادامه <span aria-hidden="true">←</span></a><a class="text-link" href="index.html">بازگشت به انتخاب بخش‌ها</a></section>
+<footer class="footer"><span>۹ بخش مرموز</span><span class="footer-separator">•</span><span>مرحلهٔ ۲ از ۳</span></footer></main>
+<script>
+const params=new URLSearchParams(location.search);const section=Number(params.get("section"));const safeSection=Number.isInteger(section)&&section>=1&&section<=9?section:1;
+document.getElementById("sectionNumber").textContent=new Intl.NumberFormat("fa-IR",{minimumIntegerDigits:2}).format(safeSection);
+document.getElementById("continueButton").href="result.html?section="+safeSection;
+</script></body></html>
