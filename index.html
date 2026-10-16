@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -6,6 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>۹ بخش مرموز</title>
   <link rel="stylesheet" href="style.css">
+  <script>
+    !function(e,t,n){
+      e.yektanetAnalyticsObject=n,
+      e[n]=e[n]||function(){e[n].q.push(arguments)},
+      e[n].q=e[n].q||[];
+      var a=t.getElementsByTagName("head")[0],
+          r=new Date,
+          c="https://cdn.yektanet.com/superscript-v2/KgM2YeyD/native-48873/yn_pub.js?v="
+            +r.getFullYear().toString()+"0"+r.getMonth()+"0"+r.getDate()+"0"+r.getHours(),
+          s=t.createElement("link");
+      s.rel="preload",
+      s.as="script",
+      s.href=c,
+      a.appendChild(s);
+      var l=t.createElement("script");
+      l.async=!0,
+      l.src=c,
+      a.appendChild(l);
+    }(window,document,"yektanet");
+  </script>
 </head>
 <body>
   <main class="container">
@@ -18,9 +37,11 @@
     <section id="adPage" class="page hidden">
       <h1>برای ادامه، ابتدا یک ویدیوی تبلیغاتی ببینید!</h1>
       <div class="ad-box">
-        <p>📢 محل نمایش تبلیغ</p>
-        <p id="adStatus">تبلیغ آزمایشی</p>
-        <button id="watchAd">مشاهده تبلیغ آزمایشی</button>
+        <p>📢 تبلیغ یکتانت</p>
+        <div id="yektanet-ad">
+          <p id="adStatus">در حال آماده‌سازی محل نمایش تبلیغ…</p>
+        </div>
+        <button id="watchAd">ادامه</button>
       </div>
       <button class="secondary" id="backHome">بازگشت</button>
     </section>
