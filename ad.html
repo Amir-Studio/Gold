@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تبلیغ | ۹ بخش مرموز</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    !function(e,t,n){
+      e.yektanetAnalyticsObject=n,
+      e[n]=e[n]||function(){e[n].q.push(arguments)},
+      e[n].q=e[n].q||[];
+      var a=t.getElementsByTagName("head")[0],
+          r=new Date,
+          c="https://cdn.yektanet.com/superscript-v2/KgM2YeyD/native-48873/yn_pub.js?v="
+            +r.getFullYear().toString()+"0"+r.getMonth()+"0"+r.getDate()+"0"+r.getHours(),
+          s=t.createElement("link");
+      s.rel="preload",
+      s.as="script",
+      s.href=c,
+      a.appendChild(s);
+      var l=t.createElement("script");
+      l.async=!0,
+      l.src=c,
+      a.appendChild(l);
+    }(window,document,"yektanet");
+  </script>
+</head>
+<body>
+  <main class="container">
+    <section class="page">
+      <h1>بخش <span id="sectionNumber">۱</span></h1>
+      <div class="ad-box">
+        <p>اگر جایگاه تمام‌صفحه یکتانت فعال باشد و تبلیغی برای نمایش موجود باشد، ممکن است تبلیغ به‌صورت خودکار نمایش داده شود.</p>
+        <p id="adStatus" role="status" aria-live="polite">در حال بارگذاری اسکریپت تبلیغات…</p>
+        <button id="continueButton" type="button">ادامه</button>
+      </div>
+      <a href="index.html" class="home-link">بازگشت به صفحهٔ اصلی</a>
+    </section>
+  </main>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const section = Number(params.get("section"));
+    const safeSection = Number.isInteger(section) && section >= 1 && section <= 9 ? section : 1;
+    document.getElementById("sectionNumber").textContent = new Intl.NumberFormat("fa-IR").format(safeSection);
+    document.getElementById("continueButton").addEventListener("click", () => {
+      window.location.href = `index.html?selected=${safeSection}`;
+    });
+    // متن بالا صرفاً وضعیت بارگذاری را توضیح می‌دهد و ادعا نمی‌کند تبلیغ حتماً نمایش داده شده است.
+    window.setTimeout(() => {
+      document.getElementById("adStatus").textContent =
+        "اگر تبلیغی نمی‌بینی، وضعیت فعال بودن جایگاه، اتصال اسکریپت و تنظیمات مرورگر را بررسی کن.";
+    }, 5000);
+  </script>
+</body>
+</html>
