@@ -1,4 +1,3 @@
-
 const homePage = document.getElementById("homePage");
 const adPage = document.getElementById("adPage");
 const finalPage = document.getElementById("finalPage");
@@ -26,15 +25,10 @@ for (let i = 1; i <= 9; i++) {
   sections.appendChild(card);
 }
 
-// نمایش تبلیغ آزمایشی
+// تا زمان اضافه‌شدن کد اختصاصی جایگاه یکتانت، ادعای مشاهده‌شدن تبلیغ نکن.
 document.getElementById("watchAd").addEventListener("click", () => {
   document.getElementById("adStatus").textContent =
-    "تبلیغ آزمایشی مشاهده شد! 😎";
-
-  document.getElementById("finalMessage").textContent =
-    "انگار مشکلی پیش اومد";
-
-  showPage(finalPage);
+    "برای نمایش تبلیغ واقعی، کد اختصاصی جایگاه تمام‌صفحه یکتانت هنوز لازم است.";
 });
 
 // بازگشت به صفحه اول
