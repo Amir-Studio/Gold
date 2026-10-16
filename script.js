@@ -1,23 +1,14 @@
 const sections = document.getElementById("sections");
-const notice = document.getElementById("notice");
 
-const params = new URLSearchParams(window.location.search);
-const selectedSection = Number(params.get("selected"));
-
-if (selectedSection >= 1 && selectedSection <= 9) {
-  notice.textContent =
-    `بخش ${selectedSection} انتخاب شد؛ محتوای بازی هنوز در این نسخه آماده نیست.`;
-}
-
-// هر بخش به صفحه‌ای جدا می‌رود تا اسکریپت یکتانت در بارگذاری کامل صفحه اجرا شود.
-// نمایش تبلیغ همچنان به فعال بودن جایگاه و در دسترس بودن تبلیغ در یکتانت بستگی دارد.
 for (let i = 1; i <= 9; i++) {
-  const card = document.createElement("button");
+  const card = document.createElement("a");
   card.className = "section-card";
-  card.type = "button";
-  card.textContent = `بخش ${i}`;
-  card.addEventListener("click", () => {
-    window.location.href = `ad.html?section=${i}`;
-  });
+  card.href = `ad.html?section=${i}`;
+  card.setAttribute("aria-label", `انتخاب بخش ${i}`);
+  card.innerHTML = `
+    <span class="card-number">${String(i).padStart(2, "0")}</span>
+    <span class="card-title">بخش ${new Intl.NumberFormat("fa-IR").format(i)}</span>
+    <span class="card-arrow" aria-hidden="true">↗</span>
+  `;
   sections.appendChild(card);
 }
