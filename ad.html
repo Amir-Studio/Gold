@@ -40,7 +40,7 @@
   <script>
     const params = new URLSearchParams(location.search);
     const section = Number(params.get("section"));
-    const safeSection = Number.isInteger(section) && section >= 1 && section <= 9 ? section : 1;
+    const safeSection = Number.isInteger(section) && section >= 1 && section <= 12 ? section : 1;
     document.getElementById("sectionNumber").textContent = new Intl.NumberFormat("fa-IR", {minimumIntegerDigits: 2}).format(safeSection);
     document.getElementById("continueButton").href = "result.html?section=" + safeSection;
   </script>
