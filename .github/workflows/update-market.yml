@@ -55,9 +55,9 @@ jobs:
                   parser = Rows(); parser.feed(html)
                   imported = []
                   for row in parser.rows:
-                      date_cell = next((c for c in row if re.search(r"20\\d{2}[/-]\\d{1,2}[/-]\\d{1,2}", c)), None)
+                      date_cell = next((c for c in row if re.search(r"20\d{2}[/-]\d{1,2}[/-]\d{1,2}", c)), None)
                       if not date_cell or len(row) < 7: continue
-                      match = re.search(r"(20\\d{2})[/-](\\d{1,2})[/-](\\d{1,2})", date_cell)
+                      match = re.search(r"(20\d{2})[/-](\d{1,2})[/-](\d{1,2})", date_cell)
                       if not match: continue
                       try:
                           # TGJU's archive is quoted in rials; the site displays tomans.
