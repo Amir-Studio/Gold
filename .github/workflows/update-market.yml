@@ -34,23 +34,32 @@ jobs:
 
           merged = {}
           metadata = {}
-          successful = 0
-
           for url in urls:
               req = urllib.request.Request(url, headers={"User-Agent": "Gold-Market-Snapshot/1.0"})
               with urllib.request.urlopen(req, timeout=20) as response:
                   payload = json.load(response)
-              if not isinstance(payload, dict) or not isinstance(payload.get("data"), list):
+              if not isinstance(payload, dict) or "data" not in payload:
                   raise ValueError("Unexpected market data format: " + url)
-              successful += 1
               if isinstance(payload.get("meta"), dict):
                   metadata.update(payload["meta"])
-              for item in payload["data"]:
+              raw_data = payload["data"]
+              if isinstance(raw_data, list):
+                  items = raw_data
+              elif isinstance(raw_data, dict):
+                  categories = raw_data.get("categories", raw_data)
+                  items = []
+                  for group in categories.values():
+                      if isinstance(group, list):
+                          items.extend(group)
+              else:
+                  raise ValueError("Unsupported data structure: " + url)
+              for item in items:
                   if isinstance(item, dict) and item.get("symbol") and item.get("price") is not None:
-                      merged[item["symbol"]] = item
+                      # Keep the popular feed's record if a symbol appears in both feeds.
+                      merged.setdefault(item["symbol"], item)
 
-          if successful != len(urls) or not merged:
-              raise RuntimeError("Could not fetch complete market data; keeping previous snapshot.")
+          if not merged:
+              raise RuntimeError("No valid market records received; keeping previous snapshot.")
 
           result = {
               "meta": {
@@ -60,7 +69,6 @@ jobs:
               },
               "data": list(merged.values()),
           }
-
           os.makedirs("data", exist_ok=True)
           with open("data/market.json", "w", encoding="utf-8") as f:
               json.dump(result, f, ensure_ascii=False, separators=(",", ":"))
