@@ -32,7 +32,9 @@
 <section class="wrap market-section" id="markets">
 <div class="section-head"><div><span class="eyebrow">نمای کلی بازار</span><h2>قیمت‌های منتخب</h2><p>آخرین دادهٔ منتشرشده؛ قیمت‌ها ممکن است با بازار لحظه‌ای اختلاف داشته باشند.</p></div><div class="updated-box"><span class="pulse"></span><span id="updatedAt">در حال دریافت داده…</span><button id="refreshBtn" class="icon-button" aria-label="به‌روزرسانی قیمت‌ها" title="به‌روزرسانی">↻</button></div></div>
 <div id="marketNotice" class="notice" role="status">در حال دریافت قیمت‌ها از منبع داده…</div>
+<div class="market-controls"><label class="search-box"><span aria-hidden="true">⌕</span><input id="marketSearch" type="search" placeholder="جست‌وجوی دلار، طلا، یورو…" autocomplete="off" aria-label="جست‌وجو در بازارها"></label><div class="filter-pills" role="group" aria-label="دسته‌بندی بازار"><button class="filter-pill active" data-category="all">همه</button><button class="filter-pill" data-category="currency">ارزها</button><button class="filter-pill" data-category="gold">طلا و سکه</button><button class="filter-pill" data-category="crypto">رمزارز</button></div></div>
 <div class="market-grid" id="marketGrid"><div class="loading-card">قیمت‌ها در حال بارگذاری‌اند…</div></div>
+<button id="showMore" class="show-more" hidden>نمایش دارایی‌های بیشتر ↓</button>
 <div class="source-note" id="sourceNote">منبع و زمان داده پس از دریافت نمایش داده می‌شود.</div>
 </section>
 <section class="wrap chart-section" id="chart-area">
