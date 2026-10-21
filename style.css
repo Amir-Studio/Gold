@@ -39,3 +39,45 @@ body{background:linear-gradient(180deg,#edf2f9 0,#f6f8fb 260px,var(--bg) 100%)}
 .contact-email:hover{color:#f0cc83}
 @media(max-width:650px){.contact-footer{align-items:flex-start;flex-direction:column;gap:9px}.contact-main{gap:8px}.contact-email{font-size:9px}.chart-panel{box-shadow:0 8px 24px #10213a08}}
 @media(prefers-reduced-motion:reduce){.live-status i{animation:none}.market-table tbody tr,.contact-icon,.price-line{transition:none}}
+
+
+/* Refined market UI: improved hierarchy, legibility and responsive polish */
+:root{--bg:#f4f6fa;--ink:#101a2c;--muted:#6d7a90;--line:#e1e7f0;--blue:#245be7;--gold:#b98228}
+::selection{background:#dce7ff;color:#10254c}
+body{background:radial-gradient(ellipse at 50% -180px,#e1eaff 0,transparent 570px),#f4f6fa}
+.topbar{box-shadow:0 6px 24px rgba(17,35,66,.055)}
+.topbar-inner{min-height:66px}
+.brand-icon{border-radius:12px}
+.chart-panel{border-radius:18px;box-shadow:0 14px 38px rgba(22,39,70,.065)}
+.section-top{margin-bottom:16px}
+.section-top h2{font-weight:800}
+.legend{flex-wrap:wrap}
+.combined-plot{isolation:isolate}
+.price-line strong b{font-variant-numeric:tabular-nums;letter-spacing:-.6px}
+.price-line em{padding:4px 7px;border-radius:7px;background:#f2f5fb}
+.dollar-line em{background:#edf2ff}
+.gold-line em{background:#fff6e7}
+.market-table th{font-weight:700;letter-spacing:-.1px}
+.market-table td,.market-table th{padding:12px 15px}
+.market-table tbody tr:hover td{background:#f5f8ff}
+.table-symbol{border-radius:10px}
+.ad-wrap{min-height:60px;margin-top:18px;border-style:dashed;background:#fbfcfe}
+.footer{margin-top:32px}
+.contact-icon{width:30px;height:30px;border-radius:9px}
+@media(min-width:900px){
+ .wrap{width:min(1120px,calc(100% - 48px))}
+ .chart-section{padding-top:32px}
+ .chart-panel{padding:20px 22px 13px}
+ .combined-plot{min-height:270px}
+}
+@media(max-width:650px){
+ .topbar-inner{gap:8px}
+ .topbar nav{gap:8px}
+ .live-status{font-size:8px}
+ .chart-panel{border-radius:14px}
+ .combined-plot{min-height:205px}
+ .price-line strong b{font-size:19px}
+ .market-table td,.market-table th{padding:10px 11px}
+ .ad-wrap{border-radius:10px}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
