@@ -139,3 +139,57 @@ body{background:radial-gradient(ellipse at 50% -180px,#e1eaff 0,transparent 570p
 .contact-brand-mark{overflow:hidden!important;padding:0!important;border-radius:50%!important;background:#050505!important;border-color:#b89555!important}
 .contact-brand-mark::after{content:none!important;display:none!important}
 .contact-brand-logo{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover}
+
+
+/* Interactive market tools: converter, watchlist and market pulse */
+.tools-section{padding-top:30px}
+.tool-card{background:linear-gradient(145deg,#fff,#fbfcff);border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:0 12px 32px #10213a08}
+.tool-intro{margin:0 0 17px;color:var(--muted);font-size:11px}
+.converter-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.tool-field{display:grid;gap:7px;min-width:0;color:var(--muted);font-size:10px}
+.tool-field input,.tool-field select{width:100%;min-width:0;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);padding:10px 11px;font-size:12px;outline:none}
+.tool-field input:focus,.tool-field select:focus{border-color:#9db8f8;box-shadow:0 0 0 3px #3267d611}
+.converter-result{display:grid;gap:5px;margin-top:15px;padding:15px;border-radius:12px;background:#0b1220;color:#d5d9e2}
+.converter-result>span{font-size:10px;color:#9da9ba}
+.converter-result strong{font-size:21px;color:#e2c17d;overflow-wrap:anywhere}
+.converter-result small{font-size:9px;color:#9da9ba;line-height:1.9}
+.watchlist-controls{display:flex;align-items:end;gap:10px}
+.watchlist-controls .tool-field{flex:1}
+.primary-tool-btn{flex-shrink:0;border:1px solid #b89555;border-radius:10px;background:#0b1220;color:#e2c17d;padding:10px 14px;font-size:11px;font-weight:700}
+.primary-tool-btn:hover{background:#172338}
+.watchlist-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:15px}
+.watch-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;border:1px solid var(--line);border-radius:11px;background:#fff;min-width:0}
+.watch-item-main{min-width:0}
+.watch-item-main b,.watch-item-main small{display:block}
+.watch-item-main b{font-size:11px}
+.watch-item-main small{color:var(--muted);font-size:9px}
+.watch-item-value{text-align:left;flex-shrink:0}
+.watch-item-value b{display:block;font-size:12px;font-variant-numeric:tabular-nums}
+.watch-item-value small{font-size:9px}
+.remove-watch{border:0;background:transparent;color:#a1aabb;font-size:17px;padding:2px 5px}
+.remove-watch:hover{color:var(--red)}
+.tool-footnote{margin:12px 0 0;color:var(--muted);font-size:9px;line-height:1.9}
+.tool-empty{grid-column:1/-1;margin:0;padding:16px;border:1px dashed var(--line);border-radius:10px;text-align:center;color:var(--muted);font-size:10px}
+.insight-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.insight-card{padding:16px;border:1px solid var(--line);border-radius:13px;background:#fff;box-shadow:0 8px 24px #10213a06}
+.insight-card>span{display:block;color:var(--muted);font-size:10px}
+.insight-card strong{display:block;margin-top:7px;font-size:18px;overflow-wrap:anywhere}
+.insight-card p{margin:7px 0 0;color:var(--muted);font-size:10px;line-height:1.9}
+.insight-card .insight-positive{color:var(--green)}
+.insight-card .insight-negative{color:var(--red)}
+.disclaimer-card{margin-top:12px;padding:15px 17px;border-right:3px solid #b89555;border-radius:10px;background:#f9f6ef}
+.disclaimer-card strong{font-size:11px;color:#6f5526}
+.disclaimer-card p{margin:4px 0 0;font-size:10px;color:#756d5e;line-height:2}
+.feature-ad{margin-top:22px}
+@media(max-width:650px){
+ .tools-section{padding-top:23px}
+ .tool-card{padding:13px;border-radius:13px}
+ .converter-grid{grid-template-columns:1fr 1fr}
+ .converter-grid .tool-field:first-child{grid-column:1/-1}
+ .converter-result strong{font-size:18px}
+ .watchlist-controls{align-items:stretch;flex-direction:column}
+ .primary-tool-btn{width:100%}
+ .watchlist-items{grid-template-columns:1fr}
+ .insight-grid{grid-template-columns:1fr}
+ .insight-card{padding:13px}
+}
