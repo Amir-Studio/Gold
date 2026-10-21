@@ -1,0 +1,79 @@
+name: Update market snapshot
+
+on:
+  schedule:
+    - cron: "17,47 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: market-snapshot
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Fetch and merge latest market data
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import urllib.request
+          from datetime import datetime, timezone
+
+          urls = [
+              "https://raw.githubusercontent.com/iran-market/iran-market.github.io/main/data/popular.json",
+              "https://raw.githubusercontent.com/iran-market/iran-market.github.io/main/data/latest-toman.json",
+          ]
+
+          merged = {}
+          metadata = {}
+          successful = 0
+
+          for url in urls:
+              req = urllib.request.Request(url, headers={"User-Agent": "Gold-Market-Snapshot/1.0"})
+              with urllib.request.urlopen(req, timeout=20) as response:
+                  payload = json.load(response)
+              if not isinstance(payload, dict) or not isinstance(payload.get("data"), list):
+                  raise ValueError("Unexpected market data format: " + url)
+              successful += 1
+              if isinstance(payload.get("meta"), dict):
+                  metadata.update(payload["meta"])
+              for item in payload["data"]:
+                  if isinstance(item, dict) and item.get("symbol") and item.get("price") is not None:
+                      merged[item["symbol"]] = item
+
+          if successful != len(urls) or not merged:
+              raise RuntimeError("Could not fetch complete market data; keeping previous snapshot.")
+
+          result = {
+              "meta": {
+                  **metadata,
+                  "source": metadata.get("source") or "Iran Market Data",
+                  "snapshot_updated_at": datetime.now(timezone.utc).isoformat(),
+              },
+              "data": list(merged.values()),
+          }
+
+          os.makedirs("data", exist_ok=True)
+          with open("data/market.json", "w", encoding="utf-8") as f:
+              json.dump(result, f, ensure_ascii=False, separators=(",", ":"))
+          print(f"Saved {len(merged)} assets to data/market.json")
+          PY
+      - name: Commit snapshot only when it changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/market.json
+          if git diff --cached --quiet; then
+            echo "Market snapshot unchanged; no commit needed."
+          else
+            git commit -m "chore: refresh market data snapshot"
+            git push
+          fi
