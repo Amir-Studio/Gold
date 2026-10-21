@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /ad.html
+Disallow: /result.html
+
+Sitemap: https://amir-studio.github.io/Gold/sitemap.xml
