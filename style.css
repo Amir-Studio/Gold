@@ -2,3 +2,48 @@
 @media(max-width:900px){.topbar-inner{gap:15px}.topbar nav{gap:13px}.topbar nav a{font-size:10px}.hero-assets{grid-template-columns:1fr 1fr}.market-summary{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr)}.market-summary>div{padding:5px 7px}.market-summary>div+div{border-top:0;border-right:1px solid #edf0f5}.chart-card{padding:15px}.tool-grid{grid-template-columns:1fr}.footer-main{align-items:flex-start;flex-direction:column}}
 @media(max-width:620px){.wrap{width:calc(100% - 26px)}.topbar-inner{min-height:62px;flex-wrap:wrap;justify-content:space-between;padding-block:7px}.brand-icon{width:35px;height:35px;font-size:19px}.brand b{font-size:12px}.brand small{font-size:8px}.topbar nav{order:3;width:100%;justify-content:space-between;padding:1px 0 7px;gap:8px}.topbar nav a{font-size:9px}.live-pill{font-size:9px;padding:5px 8px}.overview{padding-top:23px}.page-heading{align-items:stretch;flex-direction:column;gap:12px}.page-heading h1{font-size:23px}.page-heading p{font-size:10px}.update-panel{min-width:0}.hero-assets{grid-template-columns:1fr;gap:9px}.hero-asset{padding:15px 16px}.hero-price-row{margin-top:12px}.hero-price-row strong{font-size:28px}.market-summary{grid-column:auto;grid-template-columns:1fr;gap:0;padding:7px 13px}.market-summary>div{padding:7px 0}.market-summary>div+div{border-top:1px solid #edf0f5;border-right:0}.section-heading{align-items:flex-start;flex-direction:column;gap:9px}.section-heading h2{font-size:19px}.section-heading p{font-size:10px}.charts-section{padding-top:30px}.chart-grid{grid-template-columns:1fr;gap:12px}.chart-card{padding:15px}.chart-main-value strong{font-size:24px}.chart-plot,.chart-empty{min-height:205px}.chart-plot svg{height:205px}.chart-stats{gap:5px}.chart-stats small{font-size:8px}.chart-stats strong{font-size:10px}.chart-footer{font-size:8px}.market-toolbar{align-items:stretch;flex-direction:column}.search-box{max-width:none;width:100%}.filter-pills{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}.filter-pill{padding:7px 3px;font-size:9px}.market-table-wrap{display:none}.mobile-market-list{display:grid;gap:8px}.mobile-market-card{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff}.mobile-market-card .table-asset{gap:8px}.mobile-market-card .table-symbol{width:31px;height:31px;flex-basis:31px}.mobile-price-side{text-align:left}.mobile-price-side b,.mobile-price-side small{display:block}.mobile-price-side b{font-size:12px}.mobile-price-side small{margin-top:4px;font-size:9px}.tool-grid{gap:10px}.converter-card{grid-template-columns:1fr 1fr;gap:10px;padding:14px}.swap-button{grid-column:1/-1;justify-self:center;transform:rotate(90deg)}.conversion-result{grid-column:1/-1}.context-grid{grid-template-columns:1fr}.footer-links{gap:12px}.footer-bottom{flex-direction:column;gap:4px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* Premium terminal refinements */
+.overview{padding-top:20px}
+.market-commandbar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:13px;padding:13px 0 15px;border-bottom:1px solid #dce2eb}
+.command-title{display:flex;align-items:center;gap:11px}
+.command-title>.eyebrow-line{height:28px;width:3px;border-radius:3px;background:linear-gradient(180deg,#d5b46a,#8f6a2d)}
+.command-title b{display:block;font-size:17px;line-height:1.5;letter-spacing:-.025em}
+.command-kicker{display:flex;gap:9px;align-items:center;color:#768399;font:800 8px/1.4 Arial,sans-serif;letter-spacing:.13em}
+.command-kicker span{color:#a47b35}
+.command-meta{display:flex;align-items:center;gap:13px}
+.session-indicator{display:flex;align-items:center;gap:7px;color:#497b65;font-size:9px;white-space:nowrap}
+.session-indicator i{width:6px;height:6px;border-radius:50%;background:#24a36d;box-shadow:0 0 0 4px #24a36d18}
+.command-meta .update-panel{min-width:245px;box-shadow:0 4px 18px #17253a06}
+.notice{margin-bottom:10px;border-radius:7px;padding:6px 10px;font-size:9px}
+.hero-assets{grid-template-columns:1fr 1fr .72fr;gap:11px}
+.hero-asset{padding:17px 19px 13px;border-radius:13px;box-shadow:0 8px 22px #1020390b}
+.dollar-asset{background:radial-gradient(ellipse at 0 0,#263d60 0,#14243b 48%,#0b1527 100%);border-color:#263852}
+.gold-asset{background:radial-gradient(ellipse at 0 0,#fffdf7 0,#fff8e8 72%);border-color:#e6d5ad}
+.hero-price-row strong{font-size:clamp(27px,2.8vw,36px);font-variant-numeric:tabular-nums}
+.hero-asset-foot{font-size:9px}
+.market-summary{border-radius:13px;box-shadow:0 8px 22px #10203906}
+.charts-section{padding-top:30px}
+.section-heading{margin-bottom:13px}
+.section-heading h2{font-size:19px}
+.chart-grid{gap:13px}
+.chart-card{padding:19px;border-radius:14px;box-shadow:0 8px 24px #15233a08}
+.chart-card:first-child{border-top:2px solid #315fbd}
+.gold-chart-card{border-top:2px solid #c18a2b}
+.chart-plot{min-height:260px;margin-top:11px;padding:3px 0;border-radius:10px;background:linear-gradient(180deg,#f8fafd 0,#fff 100%)}
+.chart-plot svg{height:260px}
+.chart-empty{min-height:260px}
+.chart-controls{margin-top:13px;background:#f0f3f8}
+.range-btn{padding-block:7px;font-size:9px}
+.chart-main-value strong{font-size:28px;font-variant-numeric:tabular-nums}
+.chart-stats{margin-top:9px;padding:12px 0}
+.chart-stats strong{font-variant-numeric:tabular-nums}
+.chart-explainer{margin-top:12px}
+.markets-section{padding-top:32px}
+.market-table-wrap{box-shadow:0 8px 24px #15233a06}
+.market-table th{background:#f2f5fa}
+.market-table td{padding-block:13px}
+.table-symbol{box-shadow:inset 0 0 0 1px #ffffff9c}
+.converter-card,.insight-card,.context-card{box-shadow:0 8px 24px #15233a06}
+.ad-wrap{margin:17px auto;border-radius:10px}
+@media(max-width:900px){.command-meta{gap:8px}.session-indicator{display:none}.hero-assets{grid-template-columns:1fr 1fr}.market-summary{grid-column:1/-1;grid-template-columns:repeat(3,1fr)}}
+@media(max-width:620px){.overview{padding-top:12px}.market-commandbar{align-items:flex-start;gap:8px;padding:8px 0 12px}.command-title b{font-size:15px}.command-kicker{font-size:7px}.command-meta{flex:1;justify-content:flex-end}.command-meta .update-panel{min-width:0;max-width:210px;padding:7px;gap:6px}.update-panel b{font-size:9px}.update-panel small{font-size:8px}.command-meta .icon-button{width:29px;height:29px}.notice{font-size:9px}.hero-asset{padding:14px}.hero-price-row strong{font-size:29px}.charts-section{padding-top:25px}.section-heading h2{font-size:18px}.chart-card{padding:13px}.chart-plot,.chart-empty{min-height:235px}.chart-plot svg{height:235px}.chart-main-value strong{font-size:25px}.chart-controls{gap:2px;padding:3px}.range-btn{font-size:8px;padding:6px 1px}.markets-section{padding-top:26px}}
