@@ -134,3 +134,8 @@ body{background:radial-gradient(ellipse at 50% -180px,#e1eaff 0,transparent 570p
 .contact-email{color:#8e887d!important}
 .contact-email:hover{color:#e2c17d!important}
 @media(max-width:650px){.contact-brand-mark{width:48px!important;height:48px!important}.contact-brand-mark::after{font-size:26px}.contact-phone{font-size:18px!important}.contact-footer{padding-block:22px 25px!important}}
+
+/* Official AmirStudio logo in the existing circular footer mark */
+.contact-brand-mark{overflow:hidden!important;padding:0!important;border-radius:50%!important;background:#050505!important;border-color:#b89555!important}
+.contact-brand-mark::after{content:none!important;display:none!important}
+.contact-brand-logo{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover}
