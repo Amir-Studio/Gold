@@ -1,4 +1,4 @@
-name: Update market snapshot
+name: Update market snapshot and history
 
 on:
   schedule:
@@ -15,73 +15,102 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Fetch and merge latest market data
+      - name: Fetch prices and append permanent history
         run: |
           python - <<'PY'
-          import json
-          import os
-          import urllib.request
+          import json, os, urllib.request
           from datetime import datetime, timezone
 
-          urls = [
-              "https://raw.githubusercontent.com/iran-market/iran-market.github.io/main/data/popular.json",
-              "https://raw.githubusercontent.com/iran-market/iran-market.github.io/main/data/latest-toman.json",
-          ]
-
-          merged = {}
-          metadata = {}
+          base = "https://raw.githubusercontent.com/iran-market/iran-market.github.io/main/data/"
+          urls = [base + "popular.json", base + "latest-toman.json"]
+          merged, metadata = {}, {}
           for url in urls:
-              req = urllib.request.Request(url, headers={"User-Agent": "Gold-Market-Snapshot/1.0"})
-              with urllib.request.urlopen(req, timeout=20) as response:
+              req = urllib.request.Request(url, headers={"User-Agent": "Gold-Market-Snapshot/2.0"})
+              with urllib.request.urlopen(req, timeout=25) as response:
                   payload = json.load(response)
-              if not isinstance(payload, dict) or "data" not in payload:
-                  raise ValueError("Unexpected market data format: " + url)
               if isinstance(payload.get("meta"), dict):
                   metadata.update(payload["meta"])
-              raw_data = payload["data"]
-              if isinstance(raw_data, list):
-                  items = raw_data
-              elif isinstance(raw_data, dict):
-                  categories = raw_data.get("categories", raw_data)
-                  items = []
-                  for group in categories.values():
-                      if isinstance(group, list):
-                          items.extend(group)
-              else:
-                  raise ValueError("Unsupported data structure: " + url)
-              for item in items:
+              raw = payload.get("data", [])
+              if isinstance(raw, dict):
+                  raw = [item for group in raw.get("categories", raw).values() if isinstance(group, list) for item in group]
+              if not isinstance(raw, list):
+                  raise ValueError("Unexpected market data format: " + url)
+              for item in raw:
                   if isinstance(item, dict) and item.get("symbol") and item.get("price") is not None:
-                      # Keep the popular feed's record if a symbol appears in both feeds.
                       merged.setdefault(item["symbol"], item)
-
           if not merged:
-              raise RuntimeError("No valid market records received; keeping previous snapshot.")
+              raise RuntimeError("No valid market records received; refusing to overwrite the last snapshot.")
 
-          result = {
-              "meta": {
-                  **metadata,
-                  "source": metadata.get("source") or "Iran Market Data",
-                  "snapshot_updated_at": datetime.now(timezone.utc).isoformat(),
-              },
-              "data": list(merged.values()),
-          }
-          os.makedirs("data", exist_ok=True)
+          os.makedirs("data/history", exist_ok=True)
+          now = datetime.now(timezone.utc).isoformat()
+          for symbol in ("USD_IRR_FREE", "GOLD_18K_IRR"):
+              path = f"data/history/{symbol}.json"
+              points = []
+              if os.path.exists(path):
+                  try:
+                      old = json.load(open(path, encoding="utf-8"))
+                      points = old if isinstance(old, list) else old.get("data", old.get("history", []))
+                  except Exception:
+                      points = []
+              if not points:
+                  source_url = base + "history/" + symbol + ".json"
+                  try:
+                      req = urllib.request.Request(source_url, headers={"User-Agent": "Gold-Market-History/2.0"})
+                      with urllib.request.urlopen(req, timeout=40) as response:
+                          historical = json.load(response)
+                      if isinstance(historical, list):
+                          points.extend(historical)
+                      elif isinstance(historical, dict):
+                          candidate = historical.get("data", historical.get("history", historical.get("items", [])))
+                          if isinstance(candidate, list):
+                              points.extend(candidate)
+                      print(f"Imported {len(points)} source history points for {symbol}")
+                  except Exception as exc:
+                      print(f"Historical seed unavailable for {symbol}: {exc}")
+              record = merged.get(symbol)
+              if record and float(record.get("price") or 0) > 0:
+                  stamp = record.get("timestamp") or record.get("checked_at") or record.get("updated_at") or now
+                  points.append({"date": stamp, "value": float(record["price"]), "recorded_at": now})
+              normalized = {}
+              for point in points:
+                  if not isinstance(point, dict):
+                      continue
+                  date = point.get("date") or point.get("timestamp") or point.get("day") or point.get("datetime") or point.get("time")
+                  value = point.get("value", point.get("close", point.get("price", point.get("rate", point.get("last", point.get("c"))))))
+                  try:
+                      value = float(value)
+                      stamp = datetime.fromisoformat(str(date).replace("Z", "+00:00"))
+                      if stamp.tzinfo is None:
+                          stamp = stamp.replace(tzinfo=timezone.utc)
+                      key = stamp.astimezone(timezone.utc).isoformat()
+                      if value > 0:
+                          normalized[key] = {"date": key, "value": value}
+                  except Exception:
+                      continue
+              history = sorted(normalized.values(), key=lambda p: p["date"])
+              with open(path, "w", encoding="utf-8") as f:
+                  json.dump(history, f, ensure_ascii=False, separators=(",", ":"))
+              print(f"Saved {len(history)} historical points for {symbol}")
+
+          result = {"meta": {**metadata, "source": metadata.get("source") or "Iran Market Data",
+                             "snapshot_updated_at": now, "history_updated_at": now},
+                    "data": list(merged.values())}
           with open("data/market.json", "w", encoding="utf-8") as f:
               json.dump(result, f, ensure_ascii=False, separators=(",", ":"))
           print(f"Saved {len(merged)} assets to data/market.json")
           PY
-      - name: Commit snapshot only when it changes
+      - name: Commit snapshot and historical archive
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/market.json
+          git add data/market.json data/history/
           if git diff --cached --quiet; then
-            echo "Market snapshot unchanged; no commit needed."
+            echo "Market data and history unchanged."
           else
-            git commit -m "chore: refresh market data snapshot"
+            git commit -m "chore: refresh prices and append historical archive"
             git push
           fi
