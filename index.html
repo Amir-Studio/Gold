@@ -22,8 +22,36 @@
 <div class="market-table-wrap"><table class="market-table"><thead><tr><th>دارایی</th><th>قیمت</th><th>تغییر روزانه</th><th>زمان داده</th></tr></thead><tbody id="marketGrid"><tr><td colspan="4" class="table-empty">در حال دریافت قیمت‌ها…</td></tr></tbody></table></div>
 <div class="yn-bnr" id="ynpos-21166"></div><div id="marketCards" class="mobile-market-list"></div><button id="showMore" class="show-more" hidden>نمایش بیشتر</button>
 <div class="ad-wrap" aria-label="مطالب پیشنهادی"><span>مطالب پیشنهادی</span><div id="pos-article-display-123674"></div></div>
-<div class="ad-wrap" aria-label="مطالب پیشنهادی بیشتر"><span>مطالب پیشنهادی</span><div id="pos-article-display-123679"></div></div>
-<div class="ad-wrap" aria-label="مطالب پیشنهادی متنی"><span>مطالب پیشنهادی</span><div id="pos-article-text-card-123680"></div></div></section>
+</section>
+<div class="ad-wrap feature-ad" aria-label="مطالب پیشنهادی بیشتر"><span>مطالب پیشنهادی</span><div id="pos-article-display-123679"></div></div>
+<section class="tools-section" id="converter">
+  <div class="section-top"><div><span class="eyebrow">SMART TOOLS</span><h2>ماشین‌حساب تبدیل دارایی</h2></div><span class="market-count">بر پایه آخرین نرخ دریافت‌شده</span></div>
+  <div class="tool-card">
+    <p class="tool-intro">مقدار یک دارایی را وارد کن تا ارزش تقریبی آن به تومان و دارایی دیگر محاسبه شود.</p>
+    <div class="converter-grid">
+      <label class="tool-field"><span>مقدار</span><input id="convertAmount" type="number" min="0" step="any" value="1" inputmode="decimal"></label>
+      <label class="tool-field"><span>از دارایی</span><select id="convertFrom"><option value="USD_IRR_FREE">دلار آزاد</option></select></label>
+      <label class="tool-field"><span>به دارایی</span><select id="convertTo"><option value="GOLD_18K_IRR">طلای ۱۸ عیار</option></select></label>
+    </div>
+    <div class="converter-result"><span>ارزش تقریبی</span><strong id="convertResult">پس از دریافت قیمت‌ها نمایش داده می‌شود</strong><small id="convertMeta">این محاسبه نرخ مرجع است و کارمزد یا اختلاف خریدوفروش را در نظر نمی‌گیرد.</small></div>
+  </div>
+</section>
+<div class="ad-wrap feature-ad" aria-label="مطالب پیشنهادی متنی"><span>مطالب پیشنهادی</span><div id="pos-article-text-card-123680"></div></div>
+<section class="tools-section" id="watchlist">
+  <div class="section-top"><div><span class="eyebrow">YOUR WATCHLIST</span><h2>فهرست پیگیری شخصی</h2></div><span class="market-count">ذخیره روی همین دستگاه</span></div>
+  <div class="tool-card">
+    <p class="tool-intro">دارایی‌های موردعلاقه‌ات را اضافه کن تا بدون جست‌وجو قیمت و تغییر روزانه‌شان را یک‌جا ببینی.</p>
+    <div class="watchlist-controls"><label class="tool-field"><span>انتخاب دارایی</span><select id="watchSelect"><option value="USD_IRR_FREE">دلار آزاد</option></select></label><button id="addWatch" class="primary-tool-btn" type="button">افزودن به فهرست ＋</button></div>
+    <div id="watchlistItems" class="watchlist-items"><p class="tool-empty">پس از دریافت قیمت‌ها، دارایی دلخواهت را اضافه کن.</p></div>
+    <p class="tool-footnote">فهرست فقط در حافظه محلی همین مرورگر ذخیره می‌شود و به حساب کاربری یا سرور ارسال نمی‌شود.</p>
+  </div>
+</section>
+<div class="ad-wrap feature-ad" aria-label="مطالب پیشنهادی کارتی"><span>مطالب پیشنهادی</span><div id="pos-article-display-card-123681"></div></div>
+<section class="tools-section" id="market-insights">
+  <div class="section-top"><div><span class="eyebrow">MARKET PULSE</span><h2>نگاه سریع به بازار</h2></div><span class="market-count">بر اساس داده‌های موجود</span></div>
+  <div id="insightCards" class="insight-grid"><article class="insight-card"><span>وضعیت بازار</span><strong>در انتظار داده</strong><p>با دریافت نرخ‌ها، خلاصه تغییرات اینجا نمایش داده می‌شود.</p></article></div>
+  <div class="disclaimer-card"><strong>یادآوری مهم</strong><p>این صفحه ابزار اطلاع‌رسانی است، نه سیگنال معاملاتی. قیمت‌ها ممکن است با تأخیر، اختلاف منبع یا فاصله خریدوفروش همراه باشند؛ پیش از هر تصمیم، نرخ را از منبع معتبر بررسی کن.</p></div>
+</section>
 <div class="yn-bnr" id="ynpos-21167"></div>
 </main>
 <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year">۲۰۲۶</span> نبض بازار</span><span>نرخ مرجع · نه توصیهٔ خرید یا فروش</span><a href="privacy.html">حریم خصوصی</a></div><div class="wrap contact-footer">
