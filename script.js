@@ -37,10 +37,10 @@ function renderFeatureOptions(){
 function updateConverter(){
  const amount=num($("convertAmount")?.value),from=rate($("convertFrom")?.value),to=rate($("convertTo")?.value),result=$("convertResult"),meta=$("convertMeta");
  if(!result||!meta)return;
- if(!Number.isFinite(amount)||amount<0||!from||!to||!(num(from.price)>0)||!(num(to.price)>0)){result.textContent="برای محاسبه، مقدار و نرخ معتبر لازم است";return}
+ if(!Number.isFinite(amount)||amount<0||!from||!to||!(num(from.price)>0)||!(num(to.price)>0)){result.textContent="برای محاسبه، مقدار و نرخ معتبر وارد کنید";return}
  const toman=amount*num(from.price),converted=toman/num(to.price);
  result.textContent=priceText(toman)+" تومان  ≈  "+fmt.format(converted)+" "+label(to);
- meta.textContent="هر "+fmt.format(amount)+" واحد "+label(from)+" با نرخ مرجع فعلی محاسبه شده است؛ اختلاف خریدوفروش و کارمزد لحاظ نشده.";
+ meta.textContent="معادل برآوردی "+fmt.format(amount)+" واحد "+label(from)+" بر اساس نرخ مرجع فعلی؛ اختلاف خرید و فروش و کارمزد لحاظ نشده است.";
 }
 function readWatchlist(){try{const x=JSON.parse(localStorage.getItem(WATCH_KEY)||'["USD_IRR_FREE","GOLD_18K_IRR"]');return Array.isArray(x)?[...new Set(x)].slice(0,12):[]}catch(e){return["USD_IRR_FREE","GOLD_18K_IRR"]}}
 function writeWatchlist(items){try{localStorage.setItem(WATCH_KEY,JSON.stringify([...new Set(items)].slice(0,12)))}catch(e){}}
