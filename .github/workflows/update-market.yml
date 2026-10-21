@@ -132,8 +132,8 @@ jobs:
                       print(f"Historical seed unavailable for {symbol}: {exc}")
               record = merged.get(symbol)
               if record and float(record.get("price") or 0) > 0:
-                  stamp = record.get("timestamp") or record.get("checked_at") or record.get("updated_at") or now
-                  points.append({"date": stamp, "value": float(record["price"]), "recorded_at": now})
+                  stamp = now  # timestamp when this site actually sampled the published price
+                  points.append({"date": stamp, "value": float(record["price"]), "source_timestamp": record.get("timestamp"), "recorded_at": now})
               normalized = {}
               for point in points:
                   if not isinstance(point, dict):
